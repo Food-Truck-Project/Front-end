@@ -11,5 +11,16 @@ html {
   min-height: 100vh;
   font-size: 2rem;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
+
+/* styling for div containing radio distinction for user type between diner and operator */ 
+.userTypeForm {
+  display: flex;
+  flex-direction: column;
+}
+.userTypeForm label {
+  margin: .5rem;
+}
