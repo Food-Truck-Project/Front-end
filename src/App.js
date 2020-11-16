@@ -1,32 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
-import * as Yup from "yup";
+import * as yup from "yup";
 import axios from "axios";
 
 
 //validating usertype and login information
-const formSchema = Yup.object().shape({
-  userType: Yup
+const formSchema = yup.object().shape({
+  userType: yup
     .string()
     .required("Must include selection."),
-  username: Yup
+  username: yup
     .string()
     .required("Username is Required")
     .min(3, "Usernames must be at least 3 characters long."),
-  email: Yup
+  email: yup
     .string()
     .email("Must be a valid email address.")
     .required("Must include email address."),
-  password: Yup
+  password: yup
     .string()
     .required("Password is Required")
     .min(6, "Passwords must be at least 6 characters long."),
 });
 
+
+//begin component function
 function App() {
 
   //state hook for login information
@@ -49,21 +50,20 @@ function App() {
   });
 
   //reach for form validation, tests one part 
-  const validateChange = e => {
-    // Reach will allow us to "reach" into the schema and test only one part.
-    Yup
-      .reach(formSchema, e.target.name)
-      .validate(e.target.value)
+  const validateChange = event => {
+    yup
+      .reach(formSchema, event.target.name)
+      .validate(event.target.value)
       .then(valid => {
         setErrors({
           ...errors,
-          [e.target.name]: ""
+          [event.target.name]: ""
         });
       })
       .catch(err => {
         setErrors({
           ...errors,
-          [e.target.name]: err.errors[0]
+          [event.target.name]: err.errors[0]
         });
       });
   };
@@ -130,7 +130,7 @@ const formSubmit = event => {
          </label>
          </div>
 
-         {/* username/pass/email */}
+         {/* username/pass/email inputs */}
          <label htmlFor="username"> Enter Your Username:
            <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
          </label>
@@ -138,10 +138,10 @@ const formSubmit = event => {
            <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
          </label>
          <label htmlFor="password">Enter Your Password:
-          <input name="password" type="text" value={form.password} placeholder="password" onChange={handleChange} />
+          <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
          </label>
-
-          <br></br><button disabled={buttonDisabled}>Submit</button>
+        {/* submit / login button */}
+          <br></br><button disabled={buttonDisabled}>Login</button>
        </form>
     </div>
   );
