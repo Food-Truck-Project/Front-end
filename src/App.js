@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import styled from 'styled-components'
+import styled from 'styled-components';
 import * as Yup from "yup";
+import axios from "axios";
 
 
 //validating usertype and login information
@@ -28,7 +29,7 @@ const formSchema = Yup.object().shape({
 
 function App() {
 
-  //state hook
+  //state hook for login information
   const [form, setForm]=useState({
     userType: "",
     username: "",
@@ -36,20 +37,87 @@ function App() {
     password: "",
   })
 
-  
+  //state hook for submit button enabled/disabled
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  //setting up errors for validation
+  const [errors, setErrors] = useState({
+  userType: "",
+  username: "",
+  email: "",
+  password: "",
+  });
+
+  //reach for form validation, tests one part 
+  const validateChange = e => {
+    // Reach will allow us to "reach" into the schema and test only one part.
+    Yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then(valid => {
+        setErrors({
+          ...errors,
+          [e.target.name]: ""
+        });
+      })
+      .catch(err => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0]
+        });
+      });
+  };
 
 //event handler for input changes   
 const handleChange= event => {
-  const {name, type, value, checked } = event.target;
-  const updatedInfo = type === "checkbox" ? checked: value
-  setForm({ ...form, [name]: updatedInfo})
-}
+  event.persist();
+  const newFormData = {
+    ...form,
+    [event.target.name]:
+      event.target.type === "checkbox" ? event.target.checked : event.target.value
+  };
+
+  validateChange(event);
+  setForm(newFormData);
+};
+
+//state for post request 
+const [post, setPost] = useState([]);
+
+
+//sets button to enabled once all fields are filled 
+useEffect(() => {
+  formSchema.isValid(form).then(valid => {
+    setButtonDisabled(!valid);
+  });
+}, [form]);
+
+
+//form submission event handler + axios POST
+const formSubmit = event => {
+  event.preventDefault();
+  axios
+    .post("https://reqres.in/api/users", form)
+    .then(res => {
+      setPost(res.data); // get just the form data from the REST api
+
+      // reset form if successful
+      setForm({
+        userType: "",
+        username: "",
+        email: "",
+        password: "",
+      });
+    })
+    .catch(err => console.log(err.response));
+};
+
 
 //main component function return, returns login form
   return (
     <div className="App">
       <h1>Food Truck Trackr</h1>
-       <form>
+       <form onSubmit={formSubmit}>
 
          {/* diner or food truck operator radio selection */}
          <div className="userTypeForm">
@@ -73,7 +141,7 @@ const handleChange= event => {
           <input name="password" type="text" value={form.password} placeholder="password" onChange={handleChange} />
          </label>
 
-          <br></br><button type="submit">Submit</button>
+          <br></br><button disabled={buttonDisabled}>Submit</button>
        </form>
     </div>
   );
