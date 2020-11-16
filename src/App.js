@@ -1,24 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import styled from 'styled-components'
+
 
 function App() {
+
+  const [form, setForm]=useState({
+    username: "",
+    email: "",
+    password: "",
+  })
+
+//event handler for input changes   
+const handleChange= event => setForm(event.target.value)
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h3>Vercel Test</h3>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <form>
+         <label htmlFor="username"> Enter Your Username:
+           <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
+         </label>
+         <label htmlFor="email"> Enter Your Email:
+           <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
+         </label>
+         <label htmlFor="password">Enter Your Password:
+          <input name="password" type="text" value={form.password} placeholder="password" onChange={handleChange} />
+         </label>
+       </form>
     </div>
   );
 }
