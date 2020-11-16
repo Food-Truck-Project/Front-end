@@ -5,26 +5,13 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
+import formSchema from "./schema.js";
 
+//styling div for errors with component function return
+const LoginErrors=styled.div`
+color: red;
+` 
 
-//validating usertype and login information
-const formSchema = yup.object().shape({
-  userType: yup
-    .string()
-    .required("Must include selection."),
-  username: yup
-    .string()
-    .required("Username is Required")
-    .min(3, "Usernames must be at least 3 characters long."),
-  email: yup
-    .string()
-    .email("Must be a valid email address.")
-    .required("Must include email address."),
-  password: yup
-    .string()
-    .required("Password is Required")
-    .min(6, "Passwords must be at least 6 characters long."),
-});
 
 
 //begin component function
@@ -71,6 +58,7 @@ function App() {
 //event handler for input changes   
 const handleChange= event => {
   event.persist();
+  console.log(errors);
   const newFormData = {
     ...form,
     [event.target.name]:
@@ -91,6 +79,7 @@ useEffect(() => {
     setButtonDisabled(!valid);
   });
 }, [form]);
+
 
 
 //form submission event handler + axios POST
@@ -118,7 +107,10 @@ const formSubmit = event => {
     <div className="App">
       <h1>Food Truck Trackr</h1>
        <form onSubmit={formSubmit}>
-
+          <LoginErrors>{errors.userType}</LoginErrors>
+          <LoginErrors>{errors.username}</LoginErrors>
+          <LoginErrors>{errors.email}</LoginErrors>
+          <LoginErrors>{errors.password}</LoginErrors>
          {/* diner or food truck operator radio selection */}
          <div className="userTypeForm">
          <h2>Are you looking for a food truck or do you operate food truck?</h2>
