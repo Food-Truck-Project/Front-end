@@ -1,0 +1,48 @@
+/* General Styling */
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+
+
+/* Sign Up Component Styling */
+.SignUp {
+  text-align: center;
+  background-color: #229bbe;
+  min-height: 100vh;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* header nav / routing styling */
+.headerNav {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.headerNav li {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 2rem;
+}
+.headerNav li a {
+  color: #010400;
+}
+
+
+
+/* styling for div containing radio distinction for role between diner and operator */ 
+.roleForm {
+  display: flex;
+  flex-direction: column;
+}
+.roleForm label {
+  margin: .5rem;
+}

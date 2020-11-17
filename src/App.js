@@ -1,26 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import styled from 'styled-components';
+import * as yup from "yup";
+import axios from "axios";
+import formSchema from "./schema.js";
+import SignUp from "./SignUp";
+import LogOut from "./LogOut"
+import LogIn from "./LogIn"
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h3>Vercel Test</h3>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App(){
+    return (
+        <div className="App">
+        <h1>Food Truck Trackr</h1>
+            <ul className="headerNav">
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/signup">Sign Up</Link></li>
+                <li><Link to="/login">Log In</Link></li>
+                <li><Link to="/logout">Log Out</Link></li>
+            </ul>    
+        <Switch>
+        <Route path="/signup">
+        <SignUp />
+        </Route>
+        <Route path="/logout">
+        <LogOut />
+        </Route>
+        <Route path="/login">
+        <LogIn />
+        </Route>
+        </Switch>
+        </div>
+    )
 }
+
+
+
+
 
 export default App;
