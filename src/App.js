@@ -6,7 +6,8 @@ import * as yup from "yup";
 import axios from "axios";
 import formSchema from "./schema.js";
 import SignUp from "./SignUp";
-import LogOut from "./logout"
+import LogOut from "./LogOut"
+import LogIn from "./LogIn"
 import "./App.css";
 
 
@@ -26,6 +27,9 @@ function App(){
         </Route>
         <Route path="/logout">
         <LogOut />
+        </Route>
+        <Route path="/login">
+        <LogIn />
         </Route>
         </Switch>
         </div>

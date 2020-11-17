@@ -10,13 +10,8 @@ import axios from "axios";
 
 function LogOut(){
     return (
-    <div className="Logout">
-      <h1>Food Truck Trackr</h1>
-      <ul className="headerNav">
-      <li><Link to="/signup">Sign Up</Link></li>
-      <li><Link to="/login">Log In</Link></li>
-      </ul>
-      <button>Log Out</button>
+    <div>
+        <h2>Thank You For Using Food Truck Trackr!</h2>
     </div>
     )
 }
