@@ -1,26 +1,38 @@
+/* General Styling */
+
 * {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-html {
-  font-size: 62.5%;
-}
-.App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  font-size: 2rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* styling for div containing radio distinction for user type between diner and operator */ 
-.userTypeForm {
-  display: flex;
-  flex-direction: column;
-}
-.userTypeForm label {
-  margin: .5rem;
-}
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  html {
+    font-size: 62.5%;
+  }
+  
+  
+  /* App Component Styling */
+  .App {
+    text-align: center;
+    background-color: #229bbe;
+    min-height: 100vh;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* header nav / routing styling */
+  .headerNav {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+  .headerNav li {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 2rem;
+  }
+  .headerNav li a {
+    color: #010400;
+  }
+  

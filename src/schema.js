@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 //validating usertype and login information
  const formSchema = yup.object().shape({
-    userType: yup
+    role: yup
       .string()
       .required("Must include selection."),
     username: yup
