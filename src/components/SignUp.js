@@ -1,12 +1,11 @@
-import './SignUp.css';
+// import './SignUp.css';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
-import formSchema from "./schema.js";
-
+import formSchema from "../validation/schema.js";
 
 //styling div for errors with component function return
 const LoginErrors=styled.div`
@@ -16,7 +15,7 @@ color: red;
 
 
 //begin component function
-function LogIn() {
+function SignUp() {
 
   //state hook for login information
   const [form, setForm]=useState({
@@ -87,7 +86,7 @@ useEffect(() => {
 const formSubmit = event => {
   event.preventDefault();
   axios
-    .post("https://trucktracker.herokuapp.com/api/users/login", form)
+    .post("https://trucktracker.herokuapp.com/api/users/register", form)
     .then(res => {
       setPost(res.data); // get just the form data from the REST api
 
@@ -124,22 +123,20 @@ const formSubmit = event => {
          </div>
 
          {/* username/pass/email inputs */}
-         <label htmlFor="username"> Enter Your Username:
+         <label htmlFor="username"> Create a Username:
            <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
          </label>
          <label htmlFor="email"> Enter Your Email:
            <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
          </label>
-         <label htmlFor="password">Enter Your Password:
+         <label htmlFor="password">Create a Password:
           <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
          </label>
         {/* submit / login button */}
-          <br></br><button disabled={buttonDisabled}>Log In</button>
+          <br></br><button disabled={buttonDisabled}>Sign Up</button>
        </form>
     </div>
   );
 }
 
-
-export default LogIn;
-
+export default SignUp;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
-import styled from 'styled-components';
-import * as yup from "yup";
-import axios from "axios";
-import formSchema from "./schema.js";
-import SignUp from "./SignUp";
-import LogOut from "./LogOut"
-import LogIn from "./LogIn"
+// import styled from 'styled-components';
+// import * as yup from "yup";
+// import axios from "axios";
+// import formSchema from "./validation/schema.js";
+import SignUp from "./components/SignUp";
+import LogOut from "./components/Logout"
+import LogIn from "./components/LogIn"
 import "./App.css";
 
 
