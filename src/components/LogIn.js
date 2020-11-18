@@ -89,6 +89,7 @@ const formSubmit = event => {
   axios
     .post("https://trucktackert.herokuapp.com/api/users/login", form)
     .then(res => {
+      localStorage.setItem('token', res.data.token)
       setPost(res.data); // get just the form data from the REST api
 
       // reset form if successful
