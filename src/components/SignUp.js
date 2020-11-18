@@ -86,7 +86,7 @@ useEffect(() => {
 const formSubmit = event => {
   event.preventDefault();
   axios
-    .post("https://trucktracker.herokuapp.com/api/users/register", form)
+    .post("https://trucktackert.herokuapp.com/api/users/register", form)
     .then(res => {
       setPost(res.data); // get just the form data from the REST api
 
