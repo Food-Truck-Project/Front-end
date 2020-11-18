@@ -13,54 +13,32 @@ function App(){
 		? localStorage.removeItem('token') 
 		: console.log('Error: Missing A Token');
 	}
-//     return (
-//         <div className="App">
-//         <h1>Food Truck Trackr</h1>
-//             <ul className="headerNav">
-//                 <li><Link to="/home">Home</Link></li>
-//                 <li><Link to="/signup">Sign Up</Link></li>
-//                 <li><Link to="/login">Log In</Link></li>
-//                 <li><Link to="/logout">Log Out</Link></li>
-//                 <li><Link to="/dinerprofile">Diner Profile</Link></li>
-//             </ul>    
-//         <Switch>
-//         <Route path="/signup">
-//         <SignUp />
-//         </Route>
-//         <Route path="/logout">
-//         <LogOut />
-//         </Route>
-//         <Route path="/login">
-//         <LogIn />
-//         </Route>
-//         <Route path="/dinerprofile">
-//         <DinerProfile />
-//         </Route>
-//         </Switch>
-//         </div>
-//     )
-// }
 
-
-
+	const dynamicNav = (alternator, props) => {
+		if(alternator === true) {
+			return (
+				localStorage.getItem('token') 
+				? <li>{props}</li>
+				: <div></div>
+			)
+		} else {
+			return (
+				localStorage.getItem('token') 
+				? <div></div>
+				: <li>{props}</li>
+			)
+		}
+	}
 
 	return (
 		<div className="App">
 			<h1>Food Truck Trackr</h1>
 				<ul className="headerNav">
 					<li><Link to="/home">Home</Link></li>
-					{localStorage.getItem('token') 
-					? <div></div>
-					: <li><Link to="/signup">Sign Up</Link></li>}
-					{localStorage.getItem('token') 
-					? <div></div>
-					: <li><Link to="/login">Log In</Link></li>}
-					{localStorage.getItem('token') 
-					? <li><Link to="/logout" onClick={logout}>Log Out</Link></li>
-					: <div></div>}
-					{localStorage.getItem('token') 
-					? <li><Link to="/dinerprofile">Diner Profile</Link></li>
-					: <div></div>}
+					{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
+					{dynamicNav(false, <Link to="/login">Log In</Link>)}
+					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
+					{dynamicNav(true, <Link to="/dinerprofile">Diner Profile</Link>)}
 				</ul>    
 			<Switch>
 				<Route path="/signup">
