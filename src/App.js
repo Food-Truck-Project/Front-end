@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp";
 import LogOut from "./components/Logout"
 import LogIn from "./components/LogIn"
 import DinerProfile from "./components/DinerProfile";
+import OperatorProfile from "./components/OperatorProfile";
 import "./App.css";
 
 
@@ -22,6 +23,7 @@ function App(){
                 <li><Link to="/login">Log In</Link></li>
                 <li><Link to="/logout">Log Out</Link></li>
                 <li><Link to="/dinerprofile">Diner Profile</Link></li>
+                <li><Link to="/operatorprofile">Operator Profile</Link></li>
             </ul>    
         <Switch>
         <Route path="/signup">
@@ -35,6 +37,9 @@ function App(){
         </Route>
         <Route path="/dinerprofile">
         <DinerProfile />
+        </Route>
+        <Route path="/operatorprofile">
+        <OperatorProfile />
         </Route>
         </Switch>
         </div>
