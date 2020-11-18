@@ -40,7 +40,7 @@ function App(){
 					{dynamicNav(false, <Link to="/login">Log In</Link>)}
 					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
 					{dynamicNav(true, <Link to="/dinerprofile">Diner Profile</Link>)}
-                    {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)}
+          {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)}
 				</ul>    
 			<Switch>
 				<Route path="/signup">
