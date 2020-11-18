@@ -1,0 +1,17 @@
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+.operatorForm {
+    background-color: #df1f4c;
+    padding: 10rem;
+    display: flex;
+    justify-content: center;
+}
+.operatorForm label {
+    display: block;
+    margin: 1rem;
+}

@@ -4,6 +4,7 @@ import SignUp from "./components/SignUp";
 import LogOut from "./components/Logout"
 import LogIn from "./components/LogIn"
 import DinerProfile from "./components/DinerProfile";
+import OperatorProfile from "./components/OperatorProfile";
 import "./App.css";
 
 
@@ -39,6 +40,7 @@ function App(){
 					{dynamicNav(false, <Link to="/login">Log In</Link>)}
 					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
 					{dynamicNav(true, <Link to="/dinerprofile">Diner Profile</Link>)}
+                    {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)}
 				</ul>    
 			<Switch>
 				<Route path="/signup">
@@ -52,6 +54,9 @@ function App(){
 				</Route>
 				<Route path="/dinerprofile">
         	<DinerProfile />
+        </Route>
+        <Route path="/operatorprofile">
+        	<OperatorProfile />
         </Route>
 			</Switch>
 		</div>
