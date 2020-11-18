@@ -27,12 +27,22 @@ const diners=axios
     console.log(err);
 })
 
-//creating     
+//creating state for diner location and favorite trucks
 const [dinerForm, setDinerForm]=useState({
         currentLocation: "",
         favoriteTrucks: [],
     })
 
+//event handler for input changes   
+const handleDinerChange= event => {
+    event.persist();
+    const newDinerFormData = {
+      ...dinerForm,
+      [event.target.name]:
+        event.target.type === "checkbox" ? event.target.checked : event.target.value
+    };
+    setDinerForm(newDinerFormData);
+  };
 
     return (
         <div className="dinerForm">
@@ -41,32 +51,32 @@ const [dinerForm, setDinerForm]=useState({
 
                 {/*diner role*/}
                 <label htmlFor="role">Role:
-                    <input type="text" name="role" value={diners.role}  />
+                    <input type="text" name="role" value={diners.role} onChange={handleDinerChange} />
                 </label>
 
                   {/*diner username*/}
                 <label htmlFor="username">Username:
-                    <input type="text" name="username" value={diners.username}  />
+                    <input type="text" name="username" value={diners.username} onChange={handleDinerChange} />
                 </label>
 
                   {/*diner email*/}
                 <label htmlFor="email">Email:
-                    <input type="email" name="email" value={diners.email}  />
+                    <input type="email" name="email" value={diners.email} onChange={handleDinerChange}  />
                 </label>
 
                   {/*diner password*/}
                 <label htmlFor="username">Password:
-                    <input type="password" name="username" value={diners.password}  />
+                    <input type="password" name="username" value={diners.password} onChange={handleDinerChange} />
                 </label>
 
                 {/*diner current location*/}
                 <label htmlFor="currentLocation">Current Location:
-                    <input type="text" name="currentLocation" value={dinerForm.currentLocation}  />
+                    <input type="text" name="currentLocation" value={dinerForm.currentLocation} onChange={handleDinerChange}  />
                 </label>
 
                 {/*diner favorite trucks*/}
                 <label htmlFor="favoriteTrucks">My Favorite Food Trucks:
-                    <input type="text" name="favoriteTrucks" value={dinerForm.favoriteTrucks}  />
+                    <input type="text" name="favoriteTrucks" value={dinerForm.favoriteTrucks} onChange={handleDinerChange}  />
                 </label>
             </form>
         </div>
