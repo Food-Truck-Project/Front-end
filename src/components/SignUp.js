@@ -1,7 +1,5 @@
 // import './SignUp.css';
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";

@@ -30,7 +30,7 @@ const operators=axios
 //creating state for operator location and favorite trucks
 const [operatorForm, setOperatorForm]=useState({
         currentLocation: "",
-        favoriteTrucks: [],
+        trucksOwned: [],
     })
 
 //event handler for input changes   
@@ -74,9 +74,9 @@ const handleOperatorChange= event => {
                     <input type="text" name="currentLocation" value={operatorForm.currentLocation} onChange={handleOperatorChange}  />
                 </label>
 
-                {/*operator favorite trucks*/}
-                <label htmlFor="favoriteTrucks">My Favorite Food Trucks:
-                    <input type="text" name="favoriteTrucks" value={operatorForm.favoriteTrucks} onChange={handleOperatorChange}  />
+                {/*operator trucks*/}
+                <label htmlFor="trucksOwned">My Food Trucks:
+                    <input type="text" name="trucksOwned" value={operatorForm.trucksOwned} onChange={handleOperatorChange}  />
                 </label>
             </form>
         </div>
