@@ -10,7 +10,7 @@ function DinerProfile(){
 
     //using axios get to grab all diners and return their individual info within an object
 const diners=axios
-.get("https://trucktackert.herokuapp.com//api/users")
+.get("https://trucktackert.herokuapp.com/api/users")
 .then (function(res){
     diners.map(function(diner){
         if (diner.role==="1"){
