@@ -1,11 +1,11 @@
-import './SignUp.css';
+// import '../';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
-import formSchema from "./schema.js";
+import formSchema from "../validation/schema";
 
 
 //styling div for errors with component function return
