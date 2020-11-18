@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import styled from 'styled-components';
-import * as yup from "yup";
-import axios from "axios";
+import React from "react";
+import { Redirect } from "react-router-dom";
 
+class LogOut extends React.Component {
+  state = {
+    redirect: false
+  }
 
+  componentDidMount() {
+    this.id = setTimeout(() => this.setState({ redirect: true }), 2000)
+  }
 
-
-function LogOut(){
-    return (
-    <div>
-        <h2>Thank You For Using Food Truck Trackr!</h2>
-    </div>
-    )
+  render() {
+    return this.state.redirect
+      ? <Redirect to="/login" />
+      : <h2>Thank You For Using Food Truck Trackr!</h2>
+  }
 }
 
-
 export default LogOut;
-
