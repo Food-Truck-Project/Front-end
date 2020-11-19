@@ -34,7 +34,7 @@ function App(){
 
 	return (
 		<div className="App">
-			<h1>Food Truck Trackr</h1>
+			 <h1 className='title'>Food Truck Trackr</h1>
 				<ul className="headerNav">
 					<li><Link to="/home">Home</Link></li>
 					{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
@@ -42,7 +42,8 @@ function App(){
 					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
 					{dynamicNav(true, <Link to="/dinerprofile">Diner Profile</Link>)}
           {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)}
-				</ul>    
+				</ul> 
+				
 			<Switch>
 				<Route path="/signup">
 					<SignUp />
