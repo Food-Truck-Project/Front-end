@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-class LogOut extends React.Component {
-  state = {
-    redirect: false
-  }
+const LogOut = () => {
+  const [redirect, setRedirect] = useState(false)
 
-  componentDidMount() {
-    this.id = setTimeout(() => this.setState({ redirect: true }), 2000)
-  }
-
-  render() {
-    return this.state.redirect
-      ? <Redirect to="/login" />
-      : <h2>Thank You For Using Food Truck Trackr!</h2>
-  }
-}
+  useEffect(() => {
+    setTimeout(() => {
+      setRedirect(true)
+      window.location.reload()
+    }, 2000)
+  }, [])
+  return (
+    redirect
+    ? <Redirect to="/login" /> 
+    : <h2>Thank You For Using Food Truck Trackr!</h2>
+  )
+} 
 
 export default LogOut;
