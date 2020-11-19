@@ -6,6 +6,7 @@ import LogIn from "./components/LogIn"
 import DinerProfile from "./components/DinerProfile";
 import OperatorProfile from "./components/OperatorProfile";
 import "./App.css";
+import { PrivateRoute } from './utils/PrivateRoute'
 
 
 function App(){
@@ -52,12 +53,8 @@ function App(){
 				<Route path="/login">
 					<LogIn />
 				</Route>
-				<Route path="/dinerprofile">
-        	<DinerProfile />
-        </Route>
-        <Route path="/operatorprofile">
-        	<OperatorProfile />
-        </Route>
+				<PrivateRoute path='/dinerprofile' Component={DinerProfile}/>
+				<PrivateRoute path='/operatorprofile' Component={OperatorProfile}/>
 			</Switch>
 		</div>
 	)

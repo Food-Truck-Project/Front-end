@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import axios from "axios";
 import "../dinerForm.css";
-
-
+import { useHistory } from 'react-router-dom'
 
 function DinerProfile(){
-
 
     //using axios get to grab all diners and return their individual info within an object
 const diners=axios
@@ -26,6 +24,11 @@ const diners=axios
 .catch (function(err){
     console.log(err);
 })
+
+// const { go } = useHistory()
+// useEffect(() => {
+//     go(0)
+// }, [diners])
 
 //creating state for diner location and favorite trucks
 const [dinerForm, setDinerForm]=useState({

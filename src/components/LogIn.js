@@ -1,11 +1,10 @@
 // import '../';
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
 import formSchema from "../validation/schema";
+import { useHistory } from 'react-router-dom'
 
 
 //styling div for errors with component function return
@@ -17,6 +16,7 @@ color: red;
 
 //begin component function
 function LogIn() {
+  const { push, go } = useHistory()
 
   //state hook for login information
   const [form, setForm]=useState({
@@ -99,6 +99,8 @@ const formSubmit = event => {
         email: "",
         password: "",
       });
+      push('/dinerprofile')
+      window.location.reload()
     })
     .catch(err => console.log(err.response));
 };
