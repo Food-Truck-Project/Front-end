@@ -5,7 +5,10 @@ const LogOut = () => {
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setRedirect(true), 2000)
+    setTimeout(() => {
+      setRedirect(true)
+      window.location.reload()
+    }, 2000)
   }, [])
   return (
     redirect
