@@ -12,10 +12,10 @@
   /* App Component Styling */
   .App {
     text-align: center;
-    background-color: #229bbe;
+    /* background-color: #2da9f1; */
     min-height: 100vh;
-    font-size: 2rem;
-    color: white;
+    font-size: 2.4rem;
+    color: rgb(22, 2, 77);
     display: flex;
     flex-direction: column;
   }
@@ -29,10 +29,20 @@
   .headerNav li {
     margin: 1rem;
     padding: 1rem;
-    background-color: white;
+    background-color:rgb(173, 201, 253);
     border-radius: 2rem;
   }
   .headerNav li a {
     color: #010400;
   }
-  
+  .App{
+    background-image: url('https://i.pinimg.com/736x/50/2b/3e/502b3ecc529b5fbbb8169701e6ed4a3b.jpg');
+    text-align: center;
+    background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position:center;
+  background-size: cover;
+  }
+  .title{
+    font-size: 4rem;;
+  }
