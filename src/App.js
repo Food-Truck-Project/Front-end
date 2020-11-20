@@ -5,6 +5,7 @@ import LogOut from "./components/Logout"
 import LogIn from "./components/LogIn"
 import "./App.css";
 import { PrivateRoute } from './utils/PrivateRoute'
+import {ListOfTrucks} from "./components/ListOfTrucks";
 
 
 function App(){
@@ -50,6 +51,9 @@ function App(){
 				</Route>
 				<Route path="/login">
 					<LogIn />
+				</Route>
+				<Route path="/home">
+					<ListOfTrucks />
 				</Route>
 				{/* <PrivateRoute path='/dinerprofile' Component={DinerProfile}/>
 				<PrivateRoute path='/operatorprofile' Component={OperatorProfile}/> */}
