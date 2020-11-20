@@ -7,6 +7,8 @@ import "./App.css";
 import { PrivateRoute } from './utils/PrivateRoute'
 import { NewTruck } from './components/NewTruck'
 import {ListOfTrucks} from "./components/ListOfTrucks";
+import { EditTruck } from './components/EditTruck'
+
 import { ContextObject } from './contexts/context'
 
 
@@ -39,24 +41,26 @@ function App(){
 			}}>
 				<h1>Food Truck Trackr</h1>
 					<ul className="headerNav">
+						<li><a href='https://clever-perlman-abd0e8.netlify.app/'>Home</a></li>
 						{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
 						{dynamicNav(false, <Link to="/login">Log In</Link>)}
-						{dynamicNav(true, <Link to="/home">Home</Link>)}
+						{dynamicNav(true, <Link to="/trucklist">Truck List</Link>)}
+						{dynamicNav(true, <Link to="/newtruck">Post a Truck</Link>)}
 						{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
-						{dynamicNav(true, <Link to="/newtruck">List a Truck</Link>)}
 					</ul>    
 				<Switch>
 					<Route path="/signup">
 						<SignUp />
 					</Route>
-					<Route path="/logout">
-						<LogOut />
-					</Route>
 					<Route path="/login">
 						<LogIn />
 					</Route>
-					<PrivateRoute path="/home" Component={ListOfTrucks}/>
+					<Route path="/logout">
+						<LogOut />
+					</Route>
+					<PrivateRoute path="/trucklist" Component={ListOfTrucks}/>
 					<PrivateRoute path='/newtruck' Component={NewTruck}/>
+					<PrivateRoute path='/truckeditor/:id' Component={EditTruck}/>
 				</Switch>
 			</ContextObject.Provider>
 		</div>

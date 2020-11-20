@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 const initialValues = {
@@ -7,9 +8,16 @@ const initialValues = {
   cuisineType_id: ''
 }
 
-export const NewTruck = () => {
+export const EditTruck = () => {
   const [newTruck, setNewTruck] = useState(initialValues)
   const userID = localStorage.getItem('userID')
+  const {id} = useParams()
+
+  useEffect(() => {
+    axiosWithAuth().get(`/trucks/${id}`)
+      .then(res => setNewTruck(res.data[0]))
+      .catch(err => console.log(err))
+  }, [])
 
   const onChange = (evt) => {
     setNewTruck({
@@ -20,7 +28,7 @@ export const NewTruck = () => {
 
   const onSubmit = (evt) => {
     evt.preventDefault()
-    axiosWithAuth().post(`/users/${userID}/trucks`, newTruck)
+    axiosWithAuth().put(`/users/${userID}/trucks/${id}`, newTruck)
       .then(res => {
         console.log(res)
         setNewTruck(initialValues)
@@ -30,6 +38,7 @@ export const NewTruck = () => {
 
   return(
     <div>
+      <h1>Howdy!</h1>
       <form onSubmit={onSubmit}>
         <input 
           name='truckName'

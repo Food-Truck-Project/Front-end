@@ -165,6 +165,7 @@ const SignUpWrapper = styled.div`
   box-sizing: border-box;
   background: lightgray;
   padding: 30px;
+  }
 
   label {
     margin-top: 10px;
@@ -183,9 +184,6 @@ const SignUpWrapper = styled.div`
       border-radius: 10px;
     }
   }
-
-
-
 `;
 
 export default SignUp;

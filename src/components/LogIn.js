@@ -16,7 +16,7 @@ color: red;
 
 //begin component function
 function LogIn() {
-  const { push, go } = useHistory()
+  const { push } = useHistory()
 
   //state hook for login information
   const [form, setForm]=useState({
@@ -99,7 +99,7 @@ const formSubmit = event => {
         email: "",
         password: "",
       });
-      push('/home')
+      push('/trucklist')
       window.location.reload()
     })
     .catch(err => console.log(err.response));
