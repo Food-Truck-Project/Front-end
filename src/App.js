@@ -35,7 +35,7 @@ function App(){
 		<div className="App">
 			<h1>Food Truck Trackr</h1>
 				<ul className="headerNav">
-					<li><Link to="/home">Home</Link></li>
+					{localStorage.getItem("token") && <li><Link to="/home">Home</Link></li>}
 					{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
 					{dynamicNav(false, <Link to="/login">Log In</Link>)}
 					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
