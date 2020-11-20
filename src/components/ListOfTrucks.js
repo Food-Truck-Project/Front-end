@@ -5,12 +5,9 @@ import { Redirect, useHistory } from 'react-router-dom'
 export function ListOfTrucks() {
     const { push } = useHistory()
 
-    function saveHandler() {
-        console.log ("Saved!")
-    }
-
     // const editHandler = (id) => {
     //     // Should Redirect to new route with id as
+    //     axiosWithAuth.get()(`/trucks${id}`)
     //     return (
     //         console.log(id)
     //     )
@@ -37,7 +34,7 @@ export function ListOfTrucks() {
                 return (
                     <div key={item.truck_id}>
                         <h1>{item.truckName}</h1>
-                        <button onClick={saveHandler}>Save to favs</button>
+                        <button onClick={()=> push(`/savedtrucks/${item.truck_id}`)}>Save to favs</button>
                         <button onClick={() => push(`/truckeditor/${item.truck_id}`)}>Edit</button>
                     </div>
                 )            
