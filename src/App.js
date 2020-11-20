@@ -8,8 +8,10 @@ import { PrivateRoute } from './utils/PrivateRoute'
 import { NewTruck } from './components/NewTruck'
 import {ListOfTrucks} from "./components/ListOfTrucks";
 import { EditTruck } from './components/EditTruck'
+import { SavedTrucks } from './components/SavedTrucks';
 
 import { ContextObject } from './contexts/context'
+
 
 
 function App(){
@@ -45,9 +47,12 @@ function App(){
 						{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
 						{dynamicNav(false, <Link to="/login">Log In</Link>)}
 						{dynamicNav(true, <Link to="/trucklist">Truck List</Link>)}
-						{dynamicNav(true, <Link to="/newtruck">Post a Truck</Link>)}
+					{dynamicNav(true, <Link to="/newtruck">Post a Truck</Link>)}
+					{dynamicNav(true, <Link to="/savedtrucks">Saved Trucks</Link>)}
+					
 						{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
-					</ul>    
+				</ul>   
+				</ContextObject.Provider>
 				<Switch>
 					<Route path="/signup">
 						<SignUp />
@@ -60,9 +65,11 @@ function App(){
 					</Route>
 					<PrivateRoute path="/trucklist" Component={ListOfTrucks}/>
 					<PrivateRoute path='/newtruck' Component={NewTruck}/>
-					<PrivateRoute path='/truckeditor/:id' Component={EditTruck}/>
+					<PrivateRoute path='/truckeditor/:id' Component={EditTruck} />
+					<PrivateRoute path='/savedtrucks/:id' Component={SavedTrucks}
+					/>
 				</Switch>
-			</ContextObject.Provider>
+			
 		</div>
 	)
 }
