@@ -114,9 +114,10 @@ const formSubmit = event => {
          {/* diner or food truck operator radio selection */}
          <div className="roleForm">
          <h2>Are you looking for a food truck or do you operate a food truck?</h2>
-         <label htmlFor="role">Diner 
+         <label htmlFor="role">
+            Diner 
             <input name="role" type="radio" value="1" checked={form.role==="1"} onChange={handleChange} />
-         </label>
+         </label> <br></br>
          <label htmlFor="role">Operator
             <input name="role" type="radio" value="2" checked={form.role==="2"} onChange={handleChange} />
          </label>
@@ -124,18 +125,19 @@ const formSubmit = event => {
 
         <SignUpWrapper>
           <div className="childWrapper">
+          <h1>Register</h1>
          {/* username/pass/email inputs */}
          <label htmlFor="username"> Create a Username:
          </label>
-           <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
+           <input className={errors.password ? "error" : "pass"} name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
          
          <label htmlFor="email"> Enter Your Email:
          </label>
-           <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
+           <input className={errors.email ? "error" : "pass"} name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
          
          <label htmlFor="password">Create a Password:
          </label>
-          <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
+          <input className={errors.password ? "error" : "pass"} name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
          
         {/* submit / login button */}
           <br></br><button disabled={buttonDisabled}>Sign Up</button>
@@ -147,17 +149,19 @@ const formSubmit = event => {
 }
 
 const SignUpWrapper = styled.div`
-  margin-top: 40px;
+  margin-top: 80px;
   width: 100%;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
- 
+  font-family: 'Alegreya Sans SC', sans-serif;
+
+
   .childWrapper{
   border-radius: 20px;
   margin-top: 40px;
-  width: 40%;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,23 +171,44 @@ const SignUpWrapper = styled.div`
   padding: 30px;
   }
 
+  h1{
+    font-size: 40px;
+  }
   label {
     margin-top: 10px;
   }
+  input {
+    
+    outline: none
+  }
+  input:focus {
+    border: 1px solid blue;
+  }
+
+  .error{
+    border: 1px solid red;
+  }
+
+  .pass{
+    border: 1px solid green;
+  }
   button {
-    width: 10rem;
+    width: 15rem;
     height: 5rem;
     outline: none;
     border: none;
     cursor: pointer;
+    background: rgb(191, 163, 244);
+    border-radius: 10px;
    
     :hover {
       color: black;
       background: lightgray;
       border: 1px solid black;
-      border-radius: 10px;
+      border-radius: 5px;
     }
   }
+
 `;
 
 export default SignUp;

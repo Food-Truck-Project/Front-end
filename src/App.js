@@ -71,6 +71,7 @@ function App(){
 				</Switch>
 			
 		</div>
+		
 	)
 }
 

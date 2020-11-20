@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export function ListOfTrucks() {
     const { push } = useHistory()
 
     // const editHandler = (id) => {
     //     // Should Redirect to new route with id as
-    //     axiosWithAuth.get()(`/trucks${id}`)
+    //     axiosWithAuth.get()(`/trucks/${id}`)
     //     return (
     //         console.log(id)
     //     )
