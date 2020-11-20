@@ -59,6 +59,7 @@ function App(){
 				<PrivateRoute path='/operatorprofile' Component={OperatorProfile}/> */}
 			</Switch>
 		</div>
+		
 	)
 }
 
