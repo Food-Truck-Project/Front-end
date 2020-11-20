@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
-import formSchema from "../validation/schema";
+import formSchema from "../validation/loginSchema";
 import { useHistory } from 'react-router-dom'
 
 
@@ -16,7 +16,7 @@ color: red;
 
 //begin component function
 function LogIn() {
-  const { push, go } = useHistory()
+  const { push } = useHistory()
 
   //state hook for login information
   const [form, setForm]=useState({
@@ -59,7 +59,6 @@ function LogIn() {
 //event handler for input changes   
 const handleChange= event => {
   event.persist();
-  console.log(errors);
   const newFormData = {
     ...form,
     [event.target.name]:
@@ -90,6 +89,7 @@ const formSubmit = event => {
     .post("https://trucktackert.herokuapp.com/api/users/login", form)
     .then(res => {
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userID', res.data.user_id)
       setPost(res.data); // get just the form data from the REST api
 
       // reset form if successful
@@ -99,7 +99,7 @@ const formSubmit = event => {
         email: "",
         password: "",
       });
-      push('/dinerprofile')
+      push('/trucklist')
       window.location.reload()
     })
     .catch(err => console.log(err.response));
@@ -129,9 +129,6 @@ const formSubmit = event => {
          {/* username/pass/email inputs */}
          <label htmlFor="username"> Enter Your Username:
            <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
-         </label>
-         <label htmlFor="email"> Enter Your Email:
-           <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
          </label>
          <label htmlFor="password">Enter Your Password:
           <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
