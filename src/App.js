@@ -5,6 +5,7 @@ import LogOut from "./components/Logout"
 import LogIn from "./components/LogIn"
 import "./App.css";
 import { PrivateRoute } from './utils/PrivateRoute'
+import { NewTruck } from './components/NewTruck'
 
 
 function App(){
@@ -38,8 +39,8 @@ function App(){
 					{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
 					{dynamicNav(false, <Link to="/login">Log In</Link>)}
 					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
-					{/* {dynamicNav(true, <Link to="/dinerprofile">Diner Profile</Link>)}
-          {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)} */}
+					{dynamicNav(true, <Link to="/newtruck">List a Truck</Link>)}
+          {/* {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)} */}
 				</ul>    
 			<Switch>
 				<Route path="/signup">
@@ -51,8 +52,8 @@ function App(){
 				<Route path="/login">
 					<LogIn />
 				</Route>
-				{/* <PrivateRoute path='/dinerprofile' Component={DinerProfile}/>
-				<PrivateRoute path='/operatorprofile' Component={OperatorProfile}/> */}
+				<PrivateRoute path='/newtruck' Component={NewTruck}/>
+				{/* <PrivateRoute path='/operatorprofile' Component={OperatorProfile}/> */}
 			</Switch>
 		</div>
 	)

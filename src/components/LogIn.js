@@ -59,7 +59,6 @@ function LogIn() {
 //event handler for input changes   
 const handleChange= event => {
   event.persist();
-  console.log(errors);
   const newFormData = {
     ...form,
     [event.target.name]:
@@ -89,6 +88,7 @@ const formSubmit = event => {
   axios
     .post("https://trucktackert.herokuapp.com/api/users/login", form)
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.data.token)
       setPost(res.data); // get just the form data from the REST api
 
