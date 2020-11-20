@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
-import formSchema from "../validation/schema";
+import formSchema from "../validation/loginSchema";
 import { useHistory } from 'react-router-dom'
 
 
@@ -16,7 +16,7 @@ color: red;
 
 //begin component function
 function LogIn() {
-  const { push, go } = useHistory()
+  const { push } = useHistory()
 
   //state hook for login information
   const [form, setForm]=useState({
@@ -59,7 +59,6 @@ function LogIn() {
 //event handler for input changes   
 const handleChange= event => {
   event.persist();
-  console.log(errors);
   const newFormData = {
     ...form,
     [event.target.name]:
@@ -90,6 +89,7 @@ const formSubmit = event => {
     .post("https://trucktackert.herokuapp.com/api/users/login", form)
     .then(res => {
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userID', res.data.user_id)
       setPost(res.data); // get just the form data from the REST api
 
       // reset form if successful
@@ -99,7 +99,7 @@ const formSubmit = event => {
         email: "",
         password: "",
       });
-      push('/dinerprofile')
+      push('/trucklist')
       window.location.reload()
     })
     .catch(err => console.log(err.response));
@@ -121,28 +121,116 @@ const formSubmit = event => {
          <label htmlFor="role">Diner 
             <input name="role" type="radio" value="1" checked={form.role==="1"} onChange={handleChange} />
          </label>
+          <br></br>
          <label htmlFor="role">Operator
             <input name="role" type="radio" value="2" checked={form.role==="2"} onChange={handleChange} />
          </label>
          </div>
-
+      <SignInWrapper>
+        <div className="childWrapper">
+          <h1>Login</h1>
          {/* username/pass/email inputs */}
          <label htmlFor="username"> Enter Your Username:
-           <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
-         </label>
-         <label htmlFor="email"> Enter Your Email:
-           <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
+           <input className={errors.username ? "error" : " "} name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
          </label>
          <label htmlFor="password">Enter Your Password:
-          <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
+          <input className={errors.password ? "error" : ""} name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
          </label>
         {/* submit / login button */}
           <br></br><button disabled={buttonDisabled}>Log In</button>
+          <h2 className="h2">Not logged in yet?</h2>
+          <a href="/singup"> Click here!</a>
+          </div>
+          </SignInWrapper>
        </form>
     </div>
   );
 }
 
+const SignInWrapper = styled.div`
+margin-top: 80px;
+width: 100%;
+height: 300px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Alegreya Sans SC', sans-serif;
+
+.childWrapper{
+border-radius: 20px;
+margin-top: 40px;
+width: 400px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: lightgray;
+padding: 30px
+
+}
+
+h1{
+  font-size: 40px;
+}
+label {
+  margin-top: 10px;
+}
+
+input {
+  outline: none;
+  margin-top: 5px;
+
+  transition-timing-function: ease-out;
+}
+input:focus {
+  border: 1px solid blue;
+  transition-timing-function: ease-out;
+}
+
+.error{
+  border: 1px solid red;
+}
+
+.pass{
+  border: 1px solid green;
+}
+
+.h2{
+ margin-top: 3rem;;
+}
+
+button {
+  width: 15rem;
+  height: 5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: rgb(191, 163, 244);
+  border-radius: 10px;
+  transition-timing-function: ease-out;
+ 
+  :hover {
+    color: black;
+    background: lightgray;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition-timing-function: ease-out;
+  }
+
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  
+  :hover{
+    transition-timing-function: ease-in-out;
+    transition-delay: 0.5s;
+    border-bottom: 1px solid black;
+  }
+}
+}
+`;
 
 export default LogIn;
 
