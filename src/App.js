@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Link, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import LogOut from "./components/Logout"
 import LogIn from "./components/LogIn"
 import "./App.css";
 import { PrivateRoute } from './utils/PrivateRoute'
 import { NewTruck } from './components/NewTruck'
+import {ListOfTrucks} from "./components/ListOfTrucks";
+import { ContextObject } from './contexts/context'
 
 
 function App(){
 	const logout = () => {
-		localStorage.getItem('token') 
-		? localStorage.removeItem('token') 
-		: console.log('Error: Missing A Token');
+		localStorage.removeItem('token') 
+		localStorage.removeItem('userID')
 	}
 
 	const dynamicNav = (alternator, props) => {
@@ -33,28 +34,31 @@ function App(){
 
 	return (
 		<div className="App">
-			<h1>Food Truck Trackr</h1>
-				<ul className="headerNav">
-					<li><Link to="/home">Home</Link></li>
-					{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
-					{dynamicNav(false, <Link to="/login">Log In</Link>)}
-					{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
-					{dynamicNav(true, <Link to="/newtruck">List a Truck</Link>)}
-          {/* {dynamicNav(true, <Link to="/operatorprofile">Operator Profile</Link>)} */}
-				</ul>    
-			<Switch>
-				<Route path="/signup">
-					<SignUp />
-				</Route>
-				<Route path="/logout">
-					<LogOut />
-				</Route>
-				<Route path="/login">
-					<LogIn />
-				</Route>
-				<PrivateRoute path='/newtruck' Component={NewTruck}/>
-				{/* <PrivateRoute path='/operatorprofile' Component={OperatorProfile}/> */}
-			</Switch>
+			<ContextObject.Provider value={{
+				test: 'test'
+			}}>
+				<h1>Food Truck Trackr</h1>
+					<ul className="headerNav">
+						{dynamicNav(false, <Link to="/signup">Sign Up</Link>)}
+						{dynamicNav(false, <Link to="/login">Log In</Link>)}
+						{dynamicNav(true, <Link to="/home">Home</Link>)}
+						{dynamicNav(true, <Link to="/logout" onClick={logout}>Log Out</Link>)}
+						{dynamicNav(true, <Link to="/newtruck">List a Truck</Link>)}
+					</ul>    
+				<Switch>
+					<Route path="/signup">
+						<SignUp />
+					</Route>
+					<Route path="/logout">
+						<LogOut />
+					</Route>
+					<Route path="/login">
+						<LogIn />
+					</Route>
+					<PrivateRoute path="/home" Component={ListOfTrucks}/>
+					<PrivateRoute path='/newtruck' Component={NewTruck}/>
+				</Switch>
+			</ContextObject.Provider>
 		</div>
 	)
 }
