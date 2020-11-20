@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import * as yup from "yup";
 import axios from "axios";
 import formSchema from "../validation/schema.js";
+import { useHistory } from "react-router-dom";
 
 //styling div for errors with component function return
 const LoginErrors=styled.div`
@@ -69,7 +70,7 @@ const handleChange= event => {
 
 //state for post request 
 const [post, setPost] = useState([]);
-
+const  {push} = useHistory()
 
 //sets button to enabled once all fields are filled 
 useEffect(() => {
@@ -95,8 +96,9 @@ const formSubmit = event => {
         email: "",
         password: "",
       });
+      push("/login")
     })
-    .catch(err => console.log(err.response));
+    .catch(err => alert(err.response.data.message));
 };
 
 
@@ -120,21 +122,70 @@ const formSubmit = event => {
          </label>
          </div>
 
+        <SignUpWrapper>
+          <div className="childWrapper">
          {/* username/pass/email inputs */}
          <label htmlFor="username"> Create a Username:
+         </label>
            <input name="username" type="text" value={form.username} placeholder="username" onChange={handleChange} />
-         </label>
+         
          <label htmlFor="email"> Enter Your Email:
+         </label>
            <input name="email" type="email" value={form.email} placeholder="email" onChange={handleChange} />
-         </label>
+         
          <label htmlFor="password">Create a Password:
-          <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
          </label>
+          <input name="password" type="password" value={form.password} placeholder="password" onChange={handleChange} />
+         
         {/* submit / login button */}
           <br></br><button disabled={buttonDisabled}>Sign Up</button>
+          </div>
+          </SignUpWrapper>
        </form>
     </div>
   );
 }
+
+const SignUpWrapper = styled.div`
+  margin-top: 40px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  .childWrapper{
+  border-radius: 20px;
+  margin-top: 40px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: lightgray;
+  padding: 30px;
+
+  label {
+    margin-top: 10px;
+  }
+  button {
+    width: 10rem;
+    height: 5rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+   
+    :hover {
+      color: black;
+      background: lightgray;
+      border: 1px solid black;
+      border-radius: 10px;
+    }
+  }
+
+
+
+`;
 
 export default SignUp;
