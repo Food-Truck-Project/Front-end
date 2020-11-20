@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
-export function ListOfTrucks () {
+export function ListOfTrucks() {
+    function saveHandler() {
+        console.log ("Saved!")
+    }
     const [trucksinfo, setTrucksInfo] = useState([])
     useEffect(() => {
         axiosWithAuth().get(`/trucks`)
@@ -18,7 +21,9 @@ export function ListOfTrucks () {
        <>
             <h1>Here are all the food trucks </h1>
             {trucksinfo.map((item,i) => {
-                return <h1 key={i}>{item.truckName}</h1>              
+                return <h1 key={i}>{item.truckName}
+                    <button onClick={saveHandler}>Save to favs</button>
+                </h1>              
             })
             }
         </>
